@@ -4,4 +4,6 @@
   <li>Home Language: <%=@user.home_language%></li>
 </ul>
 
+<%= link_to 'Edit', edit_user_path(@user)%>
+<%= link_to 'Delete User', @user, method: :delete, data: {confirm: 'Are you sure?'}%>
 <%= link_to 'Homepage', root_path%>

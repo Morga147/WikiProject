@@ -7,9 +7,21 @@
 
 <h2>Placeholder for Daily Topic</h2>
 
-<% @posts.each do |post|%>
-  <h2><%=link_to post.title, post%></h2>
-  <p>Published: <%=post.created_at.strftime('%b. %d, %Y')%></p>
-  <p>Author: <%=link_to post.user.username, post.user%>
-  <p><%=truncate(post.content, length: 200)%></p>
-<%end%>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Published</th>
+      <th>Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post|%>
+      <tr>
+        <td><%=link_to post.title, post%></td>
+        <td><%=post.created_at.strftime('%b. %d, %Y')%></td>
+        <td><%=link_to post.user.username, post.user%></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
