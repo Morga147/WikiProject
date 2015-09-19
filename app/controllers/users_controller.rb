@@ -2,29 +2,39 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.all.order('created_at DESC')
   end #end index
 
   def login
+    if current_user
+      redirect_to user_path(current_user)
+    else
+      render :login
+    end #end if/else
   end #end login
+
+  def logout
+    session[:user_id]=nil
+    redirect_to logout_path
+  end #end logout
 
   def login_post
     @user = User.find_by({email: params[:email]})
     if @user
       if @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        redirect_to root_path
+        redirect_to user_path
       else
-        redirect_to '/login'
+        redirect_to login_path
       end #end if/else
     else
-      redirect_to '/login'
+      redirect_to login_path
     end #end if/else
   end #end login_post
 
 
   def show
-    @users = User.all.order("created_at DESC")
+    @posts = @user.posts 
   end #end show
 
   # Sign-Up / Create a new user profile

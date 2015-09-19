@@ -1,9 +1,36 @@
 <h1><%= @user.username %></h1>
+
+<h3>Details</h3>
 <ul>
   <li>Email: <%=@user.email%></li>
   <li>Home Language: <%=@user.home_language%></li>
 </ul>
 
+<h3>Posts</h3>
+<% if @posts = 'nil'%>
+  <p>
+    <%=@user.username%> hasn't posted anything yet.
+  </p>
+<%else%>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Published</th>
+        </tr>
+      </thead>
+      <tbody>
+    <% @posts.each do |post|%>
+        <tr>
+          <td><%=link_to post.title, post %></td>
+          <td><%=post.created_at.strftime('%b. %d, %Y')%></td>
+        </tr>
+    <%end%>
+      </tbody>
+    </table>
+<%end%>
+
+<%= link_to 'Back', users_path %>
 <%= link_to 'Edit', edit_user_path(@user)%>
-<%= link_to 'Delete User', @user, method: :delete, data: {confirm: 'Are you sure?'}%>
+<%= link_to 'Delete', @user, method: :delete, data: {confirm: 'Are you sure?'}%>
 <%= link_to 'Homepage', root_path%>
