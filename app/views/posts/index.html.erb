@@ -1,8 +1,15 @@
-<h1>Welcome to Chat Post</h1>
+<h1>Chat Post</h1>
 
 <%= link_to 'New Post', new_post_path%>
+<%= link_to 'Members', users_path%>
+<%= link_to 'Log-In', login_path%>
+<%= link_to 'Sign-Up', new_user_path%>
+
+<h2>Placeholder for Daily Topic</h2>
+
 <% @posts.each do |post|%>
-  <h2><%=post.title%></h2>
+  <h2><%=link_to post.title, post%></h2>
   <p>Published: <%=post.created_at.strftime('%b. %d, %Y')%></p>
+  <p>Author: <%=link_to post.user.username, post.user%>
   <p><%=truncate(post.content, length: 200)%></p>
 <%end%>

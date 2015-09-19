@@ -1,0 +1,9 @@
+<h1>Member Listing</h1>
+
+<% @users.each do |user|%>
+  <ul>
+    <li><%=link_to user.username, user%></li>
+  </ul>
+<%end%>
+
+<%= link_to 'Homepage', root_path%>
