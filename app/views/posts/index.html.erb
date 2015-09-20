@@ -3,6 +3,7 @@
     <tr>
       <th>Title</th>
       <th>Author</th>
+      <th>Snipit</th>
       <th>Published</th>
     </tr>
   </thead>
@@ -11,7 +12,8 @@
       <tr>
         <td><%=link_to post.title, post%></td>
         <td><%=link_to post.user.username, post.user%></td>
-        <td><%=post.created_at.strftime('%b. %d, %Y')%></td>
+        <td><%= truncate(post.content, length: 100)%></td>
+        <td><%=post.created_at.strftime('%x')%></td>
       </tr>
     <%end%>
   </tbody>

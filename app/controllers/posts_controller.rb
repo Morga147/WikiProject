@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
-  before_action :authorize, except: [:show, :index]
+  before_action :authorize, except: [:show, :index, :edit, :update]
 
   def authorize
     if current_user.nil?
-      redirect_to login_path, alert: "Not authorized. Only #{@post.user} has access."
+      redirect_to login_path, alert: "Not authorized. Only #{@post.user.username} can do that."
     else
       if @post && @post.user != current_user
-        redirect_to root_path, alert: "Not authorized. Only #{@post.user} has access."
+        redirect_to root_path, alert: "Not authorized. Only #{@post.user.username} can do that."
       end #end second if/else
     end #end first if/else
   end #end def authorize
