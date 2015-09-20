@@ -1,26 +1,21 @@
 <h1>Chat Post</h1>
 
-<%= link_to 'New Post', new_post_path%>
-<%= link_to 'Members', users_path%>
-<%= link_to 'Log-In', login_path%>
-<%= link_to 'Sign-Up', new_user_path%>
-
 <h2>Placeholder for Daily Topic</h2>
 
 <table>
   <thead>
     <tr>
       <th>Title</th>
-      <th>Published</th>
       <th>Author</th>
+      <th>Published</th>
     </tr>
   </thead>
   <tbody>
     <% @posts.each do |post|%>
       <tr>
         <td><%=link_to post.title, post%></td>
-        <td><%=post.created_at.strftime('%b. %d, %Y')%></td>
         <td><%=link_to post.user.username, post.user%></td>
+        <td><%=post.created_at.strftime('%b. %d, %Y')%></td>
       </tr>
     <%end%>
   </tbody>

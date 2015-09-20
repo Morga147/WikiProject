@@ -1,5 +1,16 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, except: [:show, :index]
+
+  def authorize
+    if current_user.nil?
+      redirect_to login_path, alert: "Not authorized. Only #{@post.user} has access."
+    else
+      if @post && @post.user != current_user
+        redirect_to root_path, alert: "Not authorized. Only #{@post.user} has access."
+      end #end second if/else
+    end #end first if/else
+  end #end def authorize
 
   def index
     @posts = Post.all.order("created_at DESC")
@@ -13,10 +24,10 @@ class PostsController < ApplicationController
   end #end new
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.build.new(post_params)
     if @post.save
       #This redirects to the showpage of the newly created post
-      redirect_to @post
+      redirect_to @post, notice: 'Post was successfully created.'
     else
       render 'new'
     end #end if/else

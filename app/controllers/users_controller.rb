@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
   def logout
     session[:user_id]=nil
-    redirect_to logout_path
   end #end logout
 
   def login_post
@@ -23,9 +22,9 @@ class UsersController < ApplicationController
     if @user
       if @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        redirect_to user_path
+        redirect_to user_path(current_user)
       else
-        redirect_to login_path
+        redirect_to login_path, notice: 'Either email or password was unrecognized.'
       end #end if/else
     else
       redirect_to login_path
@@ -34,7 +33,7 @@ class UsersController < ApplicationController
 
 
   def show
-    @posts = @user.posts 
+    @posts = @user.posts
   end #end show
 
   # Sign-Up / Create a new user profile
@@ -57,7 +56,7 @@ class UsersController < ApplicationController
 
   def update
       if @user.update(user_params)
-        redirect_to @user, notice: 'User was successfully updated.'
+        redirect_to @user, notice:'User was successfully updated.'
       else
         render 'edit'
       end #end if/else
@@ -65,7 +64,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to root_path, notice: 'User was successfully deleted.'
+    redirect_to root_path, notice:'User was successfully deleted.'
   end #end destroy
 
   private
