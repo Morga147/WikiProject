@@ -24,7 +24,8 @@ class PostsController < ApplicationController
   end #end new
 
   def create
-    @post = current_user.build.new(post_params)
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
     if @post.save
       #This redirects to the showpage of the newly created post
       redirect_to @post, notice: 'Post was successfully created.'

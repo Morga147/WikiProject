@@ -1,14 +1,14 @@
 <h1><%=@post.title%></h1>
   <p>Originally Published: <%=@post.created_at.strftime('%b. %d, %Y')%></p>
-  <p>Author: <%=link_to @post.user.username, user_path%></p>
+  <p>Author: <%=link_to @post.user.username, @post.user%></p>
   <p>Last Updated: </p>
 <p>
   <%=@post.content%>
 </p>
 
 <% if current_user %>
-  <%= link_to 'Edit', edit_post_path(@post)%>
-<% end %> |
+  <%= link_to 'Edit', edit_post_path(@post)%> |
+<% end %>
 <% if current_user && @post.user == current_user %>
   <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
