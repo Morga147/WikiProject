@@ -5,6 +5,7 @@
     <tr>
       <th>Title</th>
       <th>Author</th>
+      <th>Category</th>
       <th>Published</th>
     </tr>
   </thead>
@@ -13,7 +14,8 @@
       <tr>
         <td><%=link_to post.title, post%></td>
         <td><%=link_to post.user.username, post.user%></td>
-        <td><%=post.created_at.strftime('%b. %d, %Y')%></td>
+        <td><%=post.category.name%></td>
+        <td><%=post.created_at.strftime('%x')%></td>
       </tr>
     <%end%>
   </tbody>

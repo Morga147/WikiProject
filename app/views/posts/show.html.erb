@@ -1,8 +1,13 @@
 <h1><%=@post.title%></h1>
-  <p>Originally Published: <%=@post.created_at.strftime('%b. %d, %Y at %I:%M%P %Z')%></p>
-  <p>Author: <%=link_to @post.user.username, @post.user%></p>
-  <p>Last Updated: <%=@post.updated_at.strftime('%b. %d, %Y at %I:%M%P %Z')%></p>
-
+  <p>
+    <strong>Author:</strong> <%=link_to @post.user.username, @post.user%>
+      <br/>
+    <strong>Category:</strong> <%=@post.category.name%>
+      <br/>
+    <strong>Originally Published:</strong> <%=@post.created_at.strftime('%b. %d, %Y at %I:%M%P %Z')%>
+      <br/>
+    <strong>Last Updated: </strong><%=@post.updated_at.strftime('%b. %d, %Y at %I:%M%P %Z')%>
+  </p>
 
 <p>
   <%=markdown(@post.content)%>
