@@ -1,0 +1,10 @@
+<h3>Categories</h3>
+  <div class="table-responsive">
+    <table class="table">
+        <%Category.all.each do |category|%>
+        <tr>
+          <td><%=link_to category.name, category%></td>
+        </tr>
+        <%end%>
+    </table>
+  </div>

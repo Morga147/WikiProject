@@ -1,4 +1,4 @@
-<h1><%= @user.username %></h1>
+<h3><%= @user.username %></h3>
 
 <h3>Details</h3>
 <ul>
@@ -7,15 +7,18 @@
 </ul>
 
 <h3>Posts</h3>
-<% if @posts == nil%>
+<% if @posts == []%>
   <p>
-    <%=@user.username%> hasn't posted anything yet.
+    <%=@user.username%> has no posts.
   </p>
 <%else%>
-    <table>
+  <div class="table-responsive">
+    <table class="table">
       <thead>
         <tr>
           <th>Title</th>
+          <th>Category</th>
+          <th>Snipit</th>
           <th>Published</th>
         </tr>
       </thead>
@@ -23,16 +26,17 @@
     <% @posts.each do |post|%>
         <tr>
           <td><%=link_to post.title, post %></td>
-          <td><%=post.created_at.strftime('%b. %d, %Y')%></td>
+          <td><%=link_to post.category.name, post.category%></td>
+          <td><%= truncate(post.content, length: 100)%></td>
+          <td><%=post.created_at.strftime('%x ')%></td>
         </tr>
     <%end%>
       </tbody>
     </table>
+  </div>
 <%end%>
 
 <% if current_user == @user %>
   <%= link_to 'Edit', edit_user_path(@user)%> |
-<% end %>
-<% if current_user == @user %>
   <%= link_to 'Delete', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

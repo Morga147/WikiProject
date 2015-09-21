@@ -4,4 +4,7 @@ class WelcomeController < ApplicationController
     @posts = Post.all.order("created_at DESC")
   end #end index
 
+  def about
+  end
+
 end

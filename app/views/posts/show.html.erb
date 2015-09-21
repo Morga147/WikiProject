@@ -1,12 +1,12 @@
-<h1><%=@post.title%></h1>
+<h3><%=@post.title%></h3>
   <p>
     <strong>Author:</strong> <%=link_to @post.user.username, @post.user%>
       <br/>
-    <strong>Category:</strong> <%=@post.category.name%>
+    <strong>Category:</strong> <%=link_to @post.category.name, @post.category%>
       <br/>
-    <strong>Originally Published:</strong> <%=@post.created_at.strftime('%b. %d, %Y at %I:%M%P %Z')%>
+    <strong>Originally Published:</strong> <%=@post.created_at.strftime('%x at %I:%M%P')%>
       <br/>
-    <strong>Last Updated: </strong><%=@post.updated_at.strftime('%b. %d, %Y at %I:%M%P %Z')%>
+    <strong>Last Updated: </strong><%=@post.updated_at.strftime('%x at %I:%M%P')%>
   </p>
 
 <p>

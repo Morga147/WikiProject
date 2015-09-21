@@ -1,0 +1,29 @@
+<h3><%=@category.name%></h3>
+
+<% if @posts == []%>
+  <p>
+    The <strong><%=@category.name%></strong> category doesn't have any posts yet.
+    Be the first to contribute!
+  </p>
+<%else%>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Snipit</th>
+          <th>Published</th>
+        </tr>
+      </thead>
+      <tbody>
+    <% @posts.each do |post|%>
+        <tr>
+          <td><%=link_to post.title, post %></td>
+          <td><%= truncate(post.content, length: 100)%></td>
+          <td><%=post.created_at.strftime('%x')%></td>
+        </tr>
+    <%end%>
+      </tbody>
+    </table>
+  </div>
+<%end%>

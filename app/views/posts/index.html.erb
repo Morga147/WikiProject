@@ -1,8 +1,9 @@
-<table>
+<h3>Post Archive</h3>
+<div class="table-responsive">
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
-      <th>Author</th>
       <th>Category</th>
       <th>Snipit</th>
       <th>Published</th>
@@ -12,11 +13,11 @@
     <% @posts.each do |post|%>
       <tr>
         <td><%=link_to post.title, post%></td>
-        <td><%=link_to post.user.username, post.user%></td>
-        <td><%=post.category.name%></td>
+        <td><%=link_to post.category.name, post.category%></td>
         <td><%= truncate(post.content, length: 100)%></td>
         <td><%=post.created_at.strftime('%x')%></td>
       </tr>
     <%end%>
   </tbody>
 </table>
+</div>

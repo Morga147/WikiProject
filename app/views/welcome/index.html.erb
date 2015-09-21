@@ -1,22 +1,33 @@
-<h2>Placeholder for Daily Topic</h2>
 
-<table>
+<h3>Monday's Topic: Family</h3>
+  <p>
+    For the beginners out there, try describing each member of your family. Advanced
+    Vernaculasaurs should go deeper. For example, if there were one thing you could
+    change about your family, what would it be and why? What makes a family?  How
+    would you describe the ideal family? What is the biggest problem facing families
+    in your country today?
+    Get chomping!
+  </p>
+<h3>Recent Posts:</h3>
+<div class="table-responsive">
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
-      <th>Author</th>
       <th>Category</th>
+      <th>Snipit</th>
       <th>Published</th>
     </tr>
   </thead>
   <tbody>
-    <% @posts.each do |post|%>
+    <% @posts.limit(10).each do |post| %>
       <tr>
         <td><%=link_to post.title, post%></td>
-        <td><%=link_to post.user.username, post.user%></td>
-        <td><%=post.category.name%></td>
+        <td><%=link_to post.category.name, post.category%></td>
+        <td><%= truncate(post.content, length: 100)%></td>
         <td><%=post.created_at.strftime('%x')%></td>
       </tr>
     <%end%>
   </tbody>
 </table>
+</div>
