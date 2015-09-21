@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href='https://fonts.googleapis.com/css?family=Slackey|Sigmar+One|Roboto' rel='stylesheet' type='text/css'>
   <title>Project2</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -14,9 +15,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      <%= image_tag 'dino.png'%>
       <h1>Vernaculasaurus</h1>
-
-      <nav>
+      <nav class="navigation">
         <%= link_to 'Home', root_path %> |
         <%= link_to 'About', about_path%> |
         <%= link_to 'Posts', posts_path %> |

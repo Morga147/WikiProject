@@ -15,3 +15,23 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+html body {
+  background-color: #CCFFCC;
+  color: #14331F;
+  font-family: 'Roboto', sans-serif;
+}
+img {
+  display: block;
+  margin: 0 auto;
+  height: 10%;
+  width: 10%;
+}
+h1 {
+  font-family: 'Sigmar One', cursive;
+  text-align: center;
+  margin: 0 auto;
+}
+.navigation {
+  text-align: center;
+  margin: 0 auto;
+}

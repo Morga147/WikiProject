@@ -1,12 +1,12 @@
 <h3><%= @user.username %></h3>
 
-<h3>Details</h3>
+<h4>Details</h4>
 <ul>
   <li><strong>Email:</strong> <%=@user.email%></li>
   <li><strong>Home Language:</strong> <%=@user.home_language%></li>
 </ul>
 
-<h3>Posts</h3>
+<h4>Posts</h4>
 <% if @posts == []%>
   <p>
     <%=@user.username%> has no posts.
